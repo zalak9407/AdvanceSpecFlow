@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeFlowAdvance.Menu.DashboardComponent
 {
-    public class DashboardButton:MarsHook
+    public class DashboardButton:MarsDriver
     {
         private IWebElement dashboardButton => marsDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/a[1]"));
         public void dashboardTab()

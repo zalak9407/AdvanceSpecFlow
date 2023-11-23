@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpeFlowAdvance.Drivers
 {
-    public class Wait:MarsHook
+    public class Wait:MarsDriver
     { 
         public static void MarsWaitToBeClickable(string LocatorType, int seconds, string LocatorValue)
         {

@@ -1,4 +1,6 @@
+using Newtonsoft.Json;
 using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using SpeFlowAdvance.Drivers;
 using SpeFlowAdvance.Menu.HomeComponent;
 using TechTalk.SpecFlow;
@@ -6,34 +8,43 @@ using TechTalk.SpecFlow;
 namespace SpeFlowAdvance.FeatureStepDefinationFiles
 {
     [Binding]
-    public class LoginFeatureStepDefinitions : MarsHook
+    public class LoginFeatureStepDefinitions : MarsDriver
     {
 
-       private Login loginObj => new Login();
+         Login loginObj;
 
-       private SigninButton signinButtonObj => new SigninButton();
+        // private SigninButton signinButtonObj => new SigninButton();
 
-        //public LoginFeatureStepDefinitions()
-        //{
-        //    loginObj = new Login();
-        //    signinButtonObj = new SigninButton();
+        public LoginFeatureStepDefinitions()
+        {
+            loginObj = new Login();
+           // signinButtonObj = new SigninButton();
 
 
-        //}
+        }
 
         [Given(@"I click on Signin button")]
         public void GivenIClickOnSigninButton()
         {
-          //  marsHook.BeforeScenarioWithTag();
-            signinButtonObj.signinTab();
+            marsDriver = new ChromeDriver();
+            // marsDriver = new ChromeDriver(@"C:\Users\jeelp\OneDrive\Desktop\AdvanceTask");
+            marsDriver.Manage().Window.Maximize();
+
+
+            marsDriver.Navigate().GoToUrl("http://localhost:5000/");
+            //  marsHook.BeforeScenarioWithTag();
+            loginObj.signinTab();
         }
 
         [When(@"I enter valid Username and Password")]
         public void WhenIEnterValidUsernameAndPassword()
         {
+            string dataJson = File.ReadAllText(@"C:\Users\jeelp\OneDrive\Desktop\AdvanceSpecFlow\AdvanceSpecFlow\SpeFlowAdvance\SpeFlowAdvance\DataFiles\LoginData.json");
+            Users users = JsonConvert.DeserializeObject<Users>(dataJson);
+            LoginUserData user = users.users.ElementAt(0);
 
-            List<LoginUserData> userList = ScenarioContext.Current.Get<List<LoginUserData>>("UserList");
-            LoginUserData user = userList[0];
+            //List<LoginUserData> userList = ScenarioContext.Current.Get<List<LoginUserData>>("UserList");
+            //LoginUserData user = userList[0];
 
             loginObj.SignInAction(user.Username, user.Password);
 

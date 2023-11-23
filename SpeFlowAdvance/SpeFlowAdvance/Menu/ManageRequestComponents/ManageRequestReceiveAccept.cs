@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpeFlowAdvance.Menu.ManageRequestComponents
 {
-    public class ManageRequestReceiveAccept:MarsHook
+    public class ManageRequestReceiveAccept:MarsDriver
     {
        
         private IWebElement acceptReqTab => marsDriver.FindElement(By.XPath("//*[@id=\"received-request-section\"]/div[2]/div[1]/table/tbody/tr[1]/td[8]/button[1]"));

@@ -11,9 +11,9 @@ using TechTalk.SpecFlow;
 
 namespace SpeFlowAdvance.Menu.HomeComponent
 {
-    public class Login : MarsHook
+    public class Login : MarsDriver
     {
-       
+        private IWebElement signInButton => marsDriver.FindElement(By.XPath("//*[@class='item' and 'Sign In']"));
         private IWebElement loginEmailaddress => marsDriver.FindElement(By.Name("email"));
         private IWebElement loginPassword => marsDriver.FindElement(By.Name("password"));
         private IWebElement rememberMe => marsDriver.FindElement(By.Name("rememberDetails"));
@@ -24,6 +24,13 @@ namespace SpeFlowAdvance.Menu.HomeComponent
         private IWebElement emailVerification => marsDriver.FindElement(By.CssSelector(".fluid.ui.teal.button"));
         private static IWebElement logout => marsDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/a[2]/button"));
 
+
+        public void signinTab()
+        {
+            Thread.Sleep(2000);
+           // Wait.MarsWaitToBeVisible("XPath", 20, "//*[@class='item' and 'Sign In']");
+            signInButton.Click();
+        }
         public void SignInAction(string Username, string Password)
         {
             loginEmailaddress.SendKeys(Username);

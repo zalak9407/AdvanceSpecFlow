@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpeFlowAdvance.Menu.DashboardComponent
 {
-    public class NotificationLoadMore:MarsHook
+    public class NotificationLoadMore:MarsDriver
     {
         private IWebElement loadMoreButton => marsDriver.FindElement(By.XPath("//*[@id=\"notification-section\"]/div[2]/div/div/div[3]/div[2]/span/span/div/div[6]/div/center/a"));
 
